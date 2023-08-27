@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import style from "./style.module.css";
 import StartStopStopwatch from "../StartStopStopwatch";
+import ResetStopwatch from "../ResetStopwatch";
 import { isStartSelector } from "../../store/selectors";
 import { useSelector } from "react-redux";
 import { handleStopwatchInterval } from "../../utils/helpers/startStop";
@@ -17,9 +19,14 @@ const Stopwatch = () => {
   }, [isStart, time]);
 
   return (
-    <div>
-      {hours}h {minutes}m {seconds}s {milliseconds}
-      <StartStopStopwatch />
+    <div className={style.container}>
+      <span>
+        {hours}h {minutes}m {seconds}s {milliseconds}
+      </span>
+      <div>
+        <ResetStopwatch setTime={setTime} />
+        <StartStopStopwatch />
+      </div>
     </div>
   );
 };
